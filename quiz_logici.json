@@ -1,0 +1,13 @@
+[
+    {
+      "domanda": "Qual è il risultato di 2+2?",
+      "risposta": "Il risultato è 4.",
+      "immagine": "immagini/esempio1.png"
+    },
+    {
+      "domanda": "Qual è la capitale d'Italia?",
+      "risposta": "La capitale d'Italia è Roma.",
+      "immagine": "immagini/esempio2.png"
+    }
+  ]
+  

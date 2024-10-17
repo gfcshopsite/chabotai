@@ -1,0 +1,147 @@
+/* Stile generale */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1E1E2F;  /* Sfondo scuro */
+    color: #ECECEC;  /* Colore testo chiaro */
+}
+
+/* Contenitore della chat */
+#chat-container {
+    border: 1px solid #444;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #252538;  /* Sfondo contenitore chat scuro */
+    transition: max-width 0.3s ease; /* Aggiunta di transizione */
+    max-width: 100%; /* Imposta il contenitore alla massima larghezza */
+}
+
+/* Campo di input e pulsanti */
+#user-input {
+    width: 70%;
+    padding: 5px;
+    background-color: #2E2E42;  /* Sfondo scuro input */
+    color: #ECECEC;
+    border: 1px solid #444;
+    border-radius: 20px;
+}
+
+#send-button, #image-upload {
+    padding: 5px 10px;
+    background-color: #5BC0EB;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#send-button:hover, #image-upload:hover {
+    background-color: #3B8BBE;
+}
+
+/* Stile messaggi */
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+/* Messaggi dell'utente a sinistra */
+.user-message {
+    background-color: #4A90E2;  /* Blu chiaro per messaggi utente */
+    color: #ECECEC;
+    text-align: left;
+    float: left;
+    clear: both;
+    border: 1px solid #357ABD;
+}
+
+/* Messaggi del bot a destra */
+.bot-message {
+    background-color: #2E2E42;  /* Grigio scuro per messaggi bot */
+    color: #ECECEC;
+    text-align: right;
+    float: right;
+    clear: both;
+    border: 1px solid #444;
+}
+
+/* Stile immagini caricate */
+.uploaded-image {
+    max-width: 150px; /* Ridimensiona automaticamente l'immagine */
+    max-height: 150px; /* Ridimensiona automaticamente l'immagine */
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: all 0.3s ease; /* Aggiunta di transizione per un effetto fluido */
+}
+
+/* Espandi la chat quando viene caricata un'immagine */
+.message img.uploaded-image:hover {
+    max-width: 300px;  /* Espandi l'immagine quando viene hoverata */
+    max-height: 300px;
+    cursor: pointer; /* Cambia il puntatore a mano quando si passa sopra l'immagine */
+}
+
+/* Pulizia del float */
+.message:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Stile per il bottone "Vai al Chat Bot" */
+#chatbot-link {
+    display: block;
+    margin: 20px auto; /* Centro il bottone */
+    padding: 10px 20px;
+    background-color: #FF5A5F;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+}
+
+#chatbot-link:hover {
+    background-color: #D9534F;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    #user-input {
+        width: 100%;
+    }
+
+    #send-button, #image-upload {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Modifiche alle immagini per schermi piccoli */
+    .uploaded-image {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .message img.uploaded-image:hover {
+        max-width: 150px;  
+        max-height: 150px;
+    }
+}
+
+
+/* Stile per il logo accanto alla scritta "Chatbot" */
+.chatbot-logo {
+    vertical-align: middle;
+    width: 40px;  /* Imposta la larghezza del logo */
+    height: auto; /* Mantiene il rapporto di aspetto */
+    margin-right: 10px; /* Aggiunge uno spazio tra il logo e la scritta */
+}
