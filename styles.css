@@ -18,6 +18,8 @@ body {
     background-color: #252538;  /* Sfondo contenitore chat scuro */
     transition: max-width 0.3s ease; /* Aggiunta di transizione */
     max-width: 100%; /* Imposta il contenitore alla massima larghezza */
+    box-sizing: border-box;
+    max-height: 60vh; /* Altezza dinamica per adattarsi ai dispositivi mobili */
 }
 
 /* Campo di input e pulsanti */
@@ -28,6 +30,7 @@ body {
     color: #ECECEC;
     border: 1px solid #444;
     border-radius: 20px;
+    box-sizing: border-box;
 }
 
 #send-button, #image-upload {
@@ -37,6 +40,9 @@ body {
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 10px;
 }
 
 #send-button:hover, #image-upload:hover {
@@ -136,7 +142,6 @@ body {
         max-height: 150px;
     }
 }
-
 
 /* Stile per il logo accanto alla scritta "Chatbot" */
 .chatbot-logo {
