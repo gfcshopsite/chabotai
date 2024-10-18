@@ -16,8 +16,8 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     background-color: #252538;  /* Sfondo contenitore chat scuro */
-    transition: max-width 0.3s ease; /* Aggiunta di transizione */
-    max-width: 100%; /* Imposta il contenitore alla massima larghezza */
+    transition: max-width 0.3s ease;
+    max-width: 100%;
     box-sizing: border-box;
     max-height: 60vh; /* Altezza dinamica per adattarsi ai dispositivi mobili */
 }
@@ -34,14 +34,14 @@ body {
 }
 
 #send-button, #image-upload {
-    padding: 5px 10px;
+    padding: 10px 20px; /* Aumentato padding per migliorare la spaziatura */
     background-color: #5BC0EB;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     box-sizing: border-box;
-    width: 100%;
+    width: 100%; /* Aggiunto per assicurare che occupino il 100% della larghezza */
     margin-top: 10px;
 }
 
@@ -85,14 +85,14 @@ body {
     max-height: 150px; /* Ridimensiona automaticamente l'immagine */
     border-radius: 10px;
     margin-top: 10px;
-    transition: all 0.3s ease; /* Aggiunta di transizione per un effetto fluido */
+    transition: all 0.3s ease;
 }
 
 /* Espandi la chat quando viene caricata un'immagine */
 .message img.uploaded-image:hover {
-    max-width: 300px;  /* Espandi l'immagine quando viene hoverata */
+    max-width: 300px;
     max-height: 300px;
-    cursor: pointer; /* Cambia il puntatore a mano quando si passa sopra l'immagine */
+    cursor: pointer;
 }
 
 /* Pulizia del float */
@@ -105,7 +105,7 @@ body {
 /* Stile per il bottone "Vai al Chat Bot" */
 #chatbot-link {
     display: block;
-    margin: 20px auto; /* Centro il bottone */
+    margin: 20px auto;
     padding: 10px 20px;
     background-color: #FF5A5F;
     color: white;
@@ -127,8 +127,14 @@ body {
     }
 
     #send-button, #image-upload {
-        width: 100%;
+        width: 100%; /* Mantiene i pulsanti a larghezza piena */
         margin-top: 10px;
+    }
+
+    /* Posizionamento a colonna dei bottoni su schermi piccoli */
+    #send-button, #image-upload {
+        display: block;
+        margin-bottom: 10px; /* Aggiungi un po' di spazio tra i bottoni */
     }
 
     /* Modifiche alle immagini per schermi piccoli */
@@ -138,7 +144,7 @@ body {
     }
 
     .message img.uploaded-image:hover {
-        max-width: 150px;  
+        max-width: 150px;
         max-height: 150px;
     }
 }
@@ -146,7 +152,7 @@ body {
 /* Stile per il logo accanto alla scritta "Chatbot" */
 .chatbot-logo {
     vertical-align: middle;
-    width: 40px;  /* Imposta la larghezza del logo */
-    height: auto; /* Mantiene il rapporto di aspetto */
-    margin-right: 10px; /* Aggiunge uno spazio tra il logo e la scritta */
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
 }
