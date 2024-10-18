@@ -156,3 +156,39 @@ body {
     height: auto;
     margin-right: 10px;
 }
+
+/* Stile per contenere i bottoni */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px; /* Spaziatura tra i bottoni */
+    margin-top: 20px;
+}
+
+.button-container .chatbot-link {
+    width: calc(50% - 10px); /* Ogni bottone occupa il 50% meno la spaziatura */
+    padding: 10px 20px;
+    background-color: #FF5A5F;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+}
+
+.button-container .chatbot-link:hover {
+    background-color: #D9534F;
+}
+
+/* Mantieni i bottoni in colonna su schermi più piccoli */
+@media (max-width: 600px) {
+    .button-container {
+        flex-direction: column;
+    }
+
+    .button-container .chatbot-link {
+        width: 100%; /* Bottoni pieni su dispositivi mobili */
+    }
+}
