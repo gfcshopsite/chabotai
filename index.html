@@ -9,8 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1/dist/tesseract.min.js"></script> <!-- Tesseract.js -->
 </head>
 <body>
+
+    
     <h1>
-        <img src="https://cdn.discordapp.com/attachments/1134533272441983086/1296427111359316061/Screenshot_2024-10-17_125751-removebg-preview.png?ex=67123f55&is=6710edd5&hm=2a9333a05098c776d01ec5f120702968edf82330114558fa210670d0aeb9ee52" 
+        <img src="https://cdn.discordapp.com/attachments/1134533272441983086/1296427111359316061/Screenshot_2024-10-17_125751-removebg-preview.png?ex=671390d5&is=67123f55&hm=0140f74f2289b481f47b90a3b6b06cbe44f16a31002a5ec7b0bb27b700bb6b80&" 
              alt="Logo" class="chatbot-logo">
         Chatbot
     </h1>
@@ -19,20 +21,29 @@
     <button id="send-button">Invia</button>
     <input type="file" id="image-upload" accept="image/*">
     
- <!-- Aggiunta del nuovo bottone -->
- <button id="chatbot-link" onclick="window.location.href='https://www.hotbot.com/';">
-    Vai al Chat Bot Alternative
-</button>
-
- <!-- Aggiunta del nuovo bottone -->
- <button id="chatbot-link" onclick="window.location.href='https://math.bot/it/app/3e64fe1f522de132af39e1d9da526a5f';">
-    MATH CHAT BOT AI
-</button>
-
- <!-- Aggiunta del nuovo bottone -->
- <button id="chatbot-link" onclick="window.location.href='https://math-gpt.org/';">
-    GPT AI
-</button>
+    <!-- Aggiunta di bottoni per vari tool -->
+    <!-- Aggiunta di bottoni per vari tool -->
+<div class="button-container">
+    <button class="chatbot-link" onclick="window.location.href='https://math.bot/it/app/3e64fe1f522de132af39e1d9da526a5f';">
+        TOOL BOT AI
+    </button>
+    <button class="chatbot-link" onclick="window.location.href='https://mymathsolver.ai/it/app/d99ab4fccd1c3d49b91fc46ff1dda764';">
+        TOOL BOT 2
+    </button>
+    <button class="chatbot-link" onclick="window.location.href='https://math.now/it/app/d5b5cccfaa1f2d3fb960c9e1f1a8f85f';">
+        TOOL BOT 3
+    </button>
+    <button class="chatbot-link" onclick="window.location.href='https://math.now/it/app/d5b5cccfaa1f2d3fb960c9e1f1a8f85f';">
+        MATH
+   </button>
+    <button class="chatbot-link" onclick="window.location.href='https://www.hotbot.com/';">
+         Bot Alternativo
+    </button>
+    <button class="chatbot-link" onclick="window.location.href='https://math-gpt.org/';">
+        GPT AI
+    </button>
+   
+</div>
 
 
     <script>
@@ -40,6 +51,7 @@
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
         const imageUpload = document.getElementById('image-upload');
+        let lastResponse = "";  // Variabile per tenere traccia dell'ultima risposta
 
         // Database di risposte con immagini
         const database = {
@@ -50,7 +62,7 @@
             "gatto": "Ecco un'immagine di un gatto!",
             "cane": "Ecco un'immagine di un cane!",
             "auto": "Ecco un'immagine di un'auto!",
-            "albero": "Ecco un'immagine di un'albero!",
+            "albero": "Ecco un'immagine di un albero!",
             "default": "Mi dispiace, non ho una risposta specifica per questa domanda. Posso aiutarti con qualcos'altro?"
         };
 
@@ -101,7 +113,7 @@
             const lowercaseMessage = message.toLowerCase();
 
             // Verifichiamo se l'input è un'operazione matematica
-            if (/^[0-9+\-*/().\s]+$/.test(lowercaseMessage)) {
+            if (/^[0-9+\-*\/().\s]+$/.test(lowercaseMessage)) {
                 return solveMathOperation(lowercaseMessage);
             }
 
@@ -110,41 +122,34 @@
                 return database[lowercaseMessage];
             }
 
-            // Chiamata all'API di OpenAI per ottenere una risposta più avanzata
-            try {
-                const response = await fetch('https://api.openai.com/v1/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer `
-                    },
-                    body: JSON.stringify({
-                        model: 'text-davinci-003',
-                        prompt: message,
-                        max_tokens: 150
-                    })
-                });
-                const data = await response.json();
-                return data.choices[0].text.trim();
-            } catch (error) {
-                console.error('Errore durante la chiamata all\'API di OpenAI:', error);
-                return "Mi dispiace, al momento non posso rispondere alla tua domanda.";
+        //    return "La risposta corretta è: E"; // Risposta predefinita
+        }
+
+        // Funzione per evitare risposte consecutive uguali
+        function getUniqueResponse(response) {
+            if (response === lastResponse) {
+                return "Sto ancora elaborando... dammi un secondo.";
             }
+            lastResponse = response;
+            return response;
         }
 
-        // Funzione per simulare il "pensiero" del bot con un ritardo
-        function simulateBotThinking(userMessage) {
-            setTimeout(async () => {
-                const botResponse = await getBotResponse(userMessage);
-                addMessage(botResponse); // Aggiungi la risposta del bot alla chat
+     // Funzione per simulare il "pensiero" del bot per immagini
+function simulateBotThinkingForImage() {
+    addMessage("Sto elaborando la tua richiesta...", false); // Messaggio temporaneo
 
-                // Verifica se ci sono immagini associate al messaggio
-                const lowercaseMessage = userMessage.toLowerCase();
-                if (imageDatabase[lowercaseMessage]) {
-                    addImage(imageDatabase[lowercaseMessage]); // Aggiungi l'immagine alla chat
-                }
-            }, 1000); // Ritardo di 2 secondi per simulare il pensiero
-        }
+    // Imposta un timeout di 10 secondi per simulare un errore
+    const timeout = setTimeout(() => {
+        addMessage("Errore: Non riesco a elaborare l'immagine. Codice errore: 0xA23F8 , ti consiglio di provare uno dei tool qui sotto per ottenere una soluzione più precisa." , false);
+    }, 10000); // 10 secondi di attesa
+
+    setTimeout(async () => {
+        const botResponse = "La risposta corretta è: E"; // Qui inserisci la logica per ottenere la risposta corretta
+        const uniqueResponse = getUniqueResponse(botResponse); // Ottieni una risposta unica
+        clearTimeout(timeout); // Cancella il timeout se il bot risponde correttamente prima del timeout
+        addMessage(uniqueResponse); // Aggiungi la risposta del bot alla chat
+    }, 15000); // Ritardo di 15 secondi per l'elaborazione dell'immagine
+}
 
         // Funzione per l'OCR (estrarre testo dall'immagine)
         function recognizeTextFromImage(imageSrc) {
@@ -174,14 +179,6 @@
                 // Logica per determinare la risposta corretta
                 if (Object.keys(answers).length > 0) {
                     correctAnswer = determineCorrectAnswer(answers, text);
-                }
-
-                if (correctAnswer) {
-                //    addMessage("La risposta corretta è: " + correctAnswer);
-                } else {
-                    // Se non si riesce a determinare una risposta corretta, seleziona una risposta casuale tra A e E
-                    const randomAnswer = ['A', 'B', 'C', 'D', 'E'][Math.floor(Math.random() * 5)];
-                   // addMessage("Non sono riuscito a determinare la risposta corretta. Risposta selezionata casualmente: " + randomAnswer);
                 }
 
             }).catch(error => {
@@ -261,9 +258,9 @@
             hierarchy.delete();
 
             // Determina una risposta basata sul numero di quadrati rilevati
-            const possibleAnswers = ['', '', '', '', ''];
+            const possibleAnswers = ['A', 'B', 'C', 'D', 'E'];
             const selectedAnswer = possibleAnswers[blackSquares % possibleAnswers.length];
-            addMessage("La risposta basata sull'analisi dell'immagine è: " + selectedAnswer);
+       //     addMessage("La risposta basata sull'analisi dell'immagine è: " + selectedAnswer);
         }
 
         // Evento per gestire il caricamento delle immagini da parte dell'utente
@@ -285,25 +282,37 @@
                     };
                 };
                 reader.readAsDataURL(file);
+                simulateBotThinkingForImage(); // Mostra il messaggio di elaborazione solo per immagini
             }
         });
 
-        // Evento al clic del bottone di invio
-        sendButton.addEventListener('click', () => {
-            const message = userInput.value.trim();
-            if (message) {
-                addMessage(message, true);  // Aggiungi il messaggio dell'utente alla chat
-                userInput.value = '';  // Resetta l'input
-                simulateBotThinking(message);  // Simula il "pensiero" e rispondi
-            }
-        });
+    // Evento al clic del bottone di invio
+sendButton.addEventListener('click', () => {
+    const message = userInput.value.trim();
+    if (message) {
+        addMessage(message, true);  // Aggiungi il messaggio dell'utente alla chat
+        userInput.value = '';  // Resetta l'input
+        simulateBotThinking(message);  // Simula il "pensiero" e rispondi ai messaggi semplici
+    }
+});
 
-        // Evento alla pressione del tasto "Enter"
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendButton.click();
-            }
-        });
+// Evento alla pressione del tasto "Enter"
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendButton.click();
+    }
+});
+
+// Funzione per simulare il "pensiero" del bot per messaggi testuali
+function simulateBotThinking(userMessage) {
+    addMessage("Sto elaborando la tua richiesta...", false); // Messaggio temporaneo
+
+    setTimeout(async () => {
+        const botResponse = await getBotResponse(userMessage);
+        const uniqueResponse = getUniqueResponse(botResponse); // Ottieni una risposta unica
+        addMessage(uniqueResponse); // Aggiungi la risposta del bot alla chat
+    }, 2000); // Ritardo di 2 secondi per messaggi testuali e operazioni matematiche
+}
     </script>
 </body>
 </html>
