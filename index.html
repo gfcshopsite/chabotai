@@ -180,11 +180,11 @@
                     correctAnswer = determineCorrectAnswer(answers, text);
                 }
 
-                if (correctAnswer) {
-                    addMessage("La risposta corretta è: " + correctAnswer);
-                } else {
+            //    if (correctAnswer) {
+            //        addMessage("La risposta corretta è: " + correctAnswer);
+            //    } else {
                     // Se non si riesce a determinare una risposta corretta, seleziona una risposta casuale tra A e E
-                    const randomAnswer = ['A', 'B', 'C', 'D', 'E'][Math.floor(Math.random() * 5)];
+            //        const randomAnswer = ['A', 'B', 'C', 'D', 'E'][Math.floor(Math.random() * 5)];
                     addMessage("Non sono riuscito a determinare la risposta corretta. Risposta selezionata casualmente: " + randomAnswer);
                 }
 
