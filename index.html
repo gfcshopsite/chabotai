@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    
     <h1>
         <img src="https://cdn.discordapp.com/attachments/1134533272441983086/1296427111359316061/Screenshot_2024-10-17_125751-removebg-preview.png?ex=671390d5&is=67123f55&hm=0140f74f2289b481f47b90a3b6b06cbe44f16a31002a5ec7b0bb27b700bb6b80&" 
              alt="Logo" class="chatbot-logo">
@@ -22,25 +21,23 @@
     <input type="file" id="image-upload" accept="image/*">
     
     <!-- Aggiunta di bottoni per vari tool -->
-    <!-- Aggiunta di bottoni per vari tool -->
-<div class="button-container">
-    <button class="chatbot-link" onclick="window.location.href='https://math.bot/it/app/3e64fe1f522de132af39e1d9da526a5f';">
-        TOOL BOT AI
-    </button>
-    <button class="chatbot-link" onclick="window.location.href='https://mymathsolver.ai/it/app/d99ab4fccd1c3d49b91fc46ff1dda764';">
-        TOOL BOT 2
-    </button>
-    <button class="chatbot-link" onclick="window.location.href='https://math.now/it/app/d5b5cccfaa1f2d3fb960c9e1f1a8f85f';">
-        TOOL BOT 3
-    </button>
-    <button class="chatbot-link" onclick="window.location.href='https://www.hotbot.com/';">
-         Bot Alternativo
-    </button>
-    <button class="chatbot-link" onclick="window.location.href='https://math-gpt.org/';">
-        GPT AI
-    </button>
-</div>
-
+    <div class="button-container">
+        <button class="chatbot-link" onclick="window.location.href='https://math.bot/it/app/3e64fe1f522de132af39e1d9da526a5f';">
+            TOOL BOT AI
+        </button>
+        <button class="chatbot-link" onclick="window.location.href='https://mymathsolver.ai/it/app/d99ab4fccd1c3d49b91fc46ff1dda764';">
+            TOOL BOT 2
+        </button>
+        <button class="chatbot-link" onclick="window.location.href='https://math.now/it/app/d5b5cccfaa1f2d3fb960c9e1f1a8f85f';">
+            TOOL BOT 3
+        </button>
+        <button class="chatbot-link" onclick="window.location.href='https://www.hotbot.com/';">
+             Bot Alternativo
+        </button>
+        <button class="chatbot-link" onclick="window.location.href='https://math-gpt.org/';">
+            GPT AI
+        </button>
+    </div>
 
     <script>
         const chatContainer = document.getElementById('chat-container');
@@ -118,7 +115,7 @@
                 return database[lowercaseMessage];
             }
 
-        //    return "La risposta corretta è: E"; // Risposta predefinita
+            return "Mi dispiace, non ho una risposta per questo.";
         }
 
         // Funzione per evitare risposte consecutive uguali
@@ -142,12 +139,7 @@
         // Funzione per simulare il "pensiero" del bot per immagini
         function simulateBotThinkingForImage() {
             addMessage("Sto elaborando la tua richiesta...", false); // Messaggio temporaneo
-
-            setTimeout(async () => {
-             //   const botResponse = "La risposta corretta è: E"; // Qui inserisci la logica per ottenere la risposta corretta
-                const uniqueResponse = getUniqueResponse(botResponse); // Ottieni una risposta unica
-                addMessage(uniqueResponse); // Aggiungi la risposta del bot alla chat
-            }, 15000); // Ritardo di 15 secondi per immagini
+            // Non viene inviata una risposta successiva per immagini
         }
 
         // Funzione per l'OCR (estrarre testo dall'immagine)
@@ -180,11 +172,11 @@
                     correctAnswer = determineCorrectAnswer(answers, text);
                 }
 
-            //    if (correctAnswer) {
-            //        addMessage("La risposta corretta è: " + correctAnswer);
-            //    } else {
+                if (correctAnswer) {
+                    addMessage("La risposta corretta è: " + correctAnswer);
+                } else {
                     // Se non si riesce a determinare una risposta corretta, seleziona una risposta casuale tra A e E
-            //        const randomAnswer = ['A', 'B', 'C', 'D', 'E'][Math.floor(Math.random() * 5)];
+                    const randomAnswer = ['A', 'B', 'C', 'D', 'E'][Math.floor(Math.random() * 5)];
                     addMessage("Non sono riuscito a determinare la risposta corretta. Risposta selezionata casualmente: " + randomAnswer);
                 }
 
@@ -312,4 +304,3 @@
     </script>
 </body>
 </html>
-
