@@ -103,21 +103,22 @@ body {
 }
 
 /* Stile per il bottone "Vai al Chat Bot" */
-#chatbot-link {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #FF5A5F;
+.chatbot-link {
+    background-color: #4CAF50; /* Verde */
     color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
+    padding: 10px 20px;
     text-align: center;
-    font-size: 18px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-#chatbot-link:hover {
-    background-color: #D9534F;
+.chatbot-link:hover {
+    background-color: #45a049; /* Colore più scuro al passaggio del mouse */
 }
 
 /* Mobile responsiveness */
